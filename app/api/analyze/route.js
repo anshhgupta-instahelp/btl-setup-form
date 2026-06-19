@@ -56,22 +56,27 @@ Respond ONLY with valid JSON in this exact format:
 
 A setup is APPROVED only if: all required elements are present, no quality issues, food table (if any) has banner on front face. Logo version does not affect approval — just note it.`
 
-    const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{
-            parts: [
-              { text: prompt },
-              { inline_data: { mime_type: mimeType, data: base64 } }
-            ]
-          }],
-          generationConfig: { temperature: 0.1, maxOutputTokens: 500 }
-        })
-      }
-    )
+    const geminiBody = JSON.stringify({
+      contents: [{
+        parts: [
+          { text: prompt },
+          { inline_data: { mime_type: mimeType, data: base64 } }
+        ]
+      }],
+      generationConfig: { temperature: 0.1, maxOutputTokens: 500 }
+    })
+
+    let geminiRes, lastErr
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      geminiRes = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`,
+        { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: geminiBody }
+      )
+      if (geminiRes.ok || geminiRes.status !== 503) break
+      lastErr = geminiRes.status
+      console.log(`Gemini 503 on attempt ${attempt}, retrying...`)
+      await new Promise(r => setTimeout(r, attempt * 1500))
+    }
 
     if (!geminiRes.ok) {
       const errText = await geminiRes.text()
