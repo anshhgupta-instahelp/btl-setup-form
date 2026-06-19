@@ -85,19 +85,28 @@ A setup is APPROVED only if: all required elements are present, no quality issue
     }
 
     const geminiJson = await geminiRes.json()
-    // Log full structure for debugging
-    console.log('Gemini full JSON:', JSON.stringify(geminiJson).slice(0, 800))
-    // gemini-2.5-flash may return multiple parts (thinking + response); join all text parts
-    const parts = geminiJson?.candidates?.[0]?.content?.parts || []
-    console.log('Parts count:', parts.length, 'types:', parts.map(p => p.thought ? 'thought' : 'text'))
-    const rawText = parts.filter(p => !p.thought).map(p => p.text || '').join('')
-    console.log('Gemini rawText:', rawText.slice(0, 400))
-    // Strip markdown code fences if present, then extract JSON object
-    const stripped = rawText.replace(/```(?:json)?\s*/gi, '').replace(/```/g, '')
-    const jsonMatch = stripped.match(/\{[\s\S]*\}/)
-    if (!jsonMatch) throw new Error('Could not parse Gemini response: ' + rawText.slice(0, 200))
+    console.log('Gemini full JSON:', JSON.stringify(geminiJson).slice(0, 1000))
 
-    const analysis = JSON.parse(jsonMatch[0])
+    const parts = geminiJson?.candidates?.[0]?.content?.parts || []
+    const rawText = parts.map(p => p.text || '').join('').trim()
+    console.log('Gemini rawText:', rawText.slice(0, 500))
+
+    let analysis
+    // Try 1: direct parse
+    try { analysis = JSON.parse(rawText) } catch (_) {}
+    // Try 2: strip markdown fences then parse
+    if (!analysis) {
+      try {
+        const clean = rawText.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim()
+        analysis = JSON.parse(clean)
+      } catch (_) {}
+    }
+    // Try 3: extract first {...} block
+    if (!analysis) {
+      const m = rawText.match(/\{[\s\S]*\}/)
+      if (m) { try { analysis = JSON.parse(m[0]) } catch (_) {} }
+    }
+    if (!analysis) throw new Error('Gemini returned unparseable response: ' + rawText.slice(0, 300))
 
     // Send to Slack
     const webhookUrl = process.env.SLACK_WEBHOOK_URL
