@@ -138,7 +138,11 @@ A setup is APPROVED only if: all required elements are present, no quality issue
       })
       const cloudJson = await cloudRes.json()
       photoUrl = cloudJson.secure_url || ''
-      console.log('Cloudinary upload:', photoUrl)
+      if (photoUrl) {
+        console.log('Cloudinary upload OK:', photoUrl)
+      } else {
+        console.error('Cloudinary upload failed - response:', JSON.stringify(cloudJson).slice(0, 300))
+      }
     } catch (err) {
       console.error('Cloudinary upload failed:', err.message)
     }
