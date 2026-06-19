@@ -63,10 +63,10 @@ A setup is APPROVED only if: all required elements are present, no quality issue
           { inline_data: { mime_type: mimeType, data: base64 } }
         ]
       }],
-      thinkingConfig: { thinkingBudget: 0 },
-          generationConfig: {
+      generationConfig: {
             temperature: 0.1,
-            maxOutputTokens: 500,
+            maxOutputTokens: 2048,
+            thinkingConfig: { thinkingBudget: 0 },
             responseMimeType: 'application/json',
             responseSchema: {
               type: 'object',
