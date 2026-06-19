@@ -132,8 +132,7 @@ A setup is APPROVED only if: all required elements are present, no quality issue
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           file: `data:${mimeType};base64,${base64}`,
-          upload_preset: 'btl_setups',
-          folder: 'btl-setups'
+          upload_preset: 'btl_setups'
         })
       })
       const cloudJson = await cloudRes.json()
