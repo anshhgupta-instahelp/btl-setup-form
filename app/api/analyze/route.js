@@ -20,6 +20,8 @@ export async function POST(req) {
     const base64 = Buffer.from(bytes).toString('base64')
     const mimeType = photo.type || 'image/jpeg'
 
+    console.log(`Photo size: ${Math.round(bytes.byteLength / 1024)}KB, type: ${mimeType}`)
+
     // Call Gemini
     const geminiKey = process.env.GEMINI_API_KEY
     if (!geminiKey) return NextResponse.json({ error: 'Gemini API key not configured' }, { status: 500 })
@@ -71,10 +73,17 @@ A setup is APPROVED only if: all required elements are present, no quality issue
       }
     )
 
+    if (!geminiRes.ok) {
+      const errText = await geminiRes.text()
+      console.error(`Gemini error ${geminiRes.status}: ${errText.slice(0, 200)}`)
+      return NextResponse.json({ error: `Gemini API error (${geminiRes.status}): ${errText.slice(0, 100)}` }, { status: 500 })
+    }
+
     const geminiJson = await geminiRes.json()
     const rawText = geminiJson?.candidates?.[0]?.content?.parts?.[0]?.text || ''
+    console.log('Gemini raw:', rawText.slice(0, 200))
     const jsonMatch = rawText.match(/\{[\s\S]*\}/)
-    if (!jsonMatch) throw new Error('Could not parse Gemini response')
+    if (!jsonMatch) throw new Error('Could not parse Gemini response: ' + rawText.slice(0, 100))
 
     const analysis = JSON.parse(jsonMatch[0])
 
@@ -121,7 +130,7 @@ A setup is APPROVED only if: all required elements are present, no quality issue
 
     return NextResponse.json(analysis)
   } catch (err) {
-    console.error(err)
+    console.error('Route error:', err.message)
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }
