@@ -124,45 +124,46 @@ A setup is APPROVED only if: all required elements are present, no quality issue
     }
     if (!analysis) throw new Error('Parse failed (' + parseErr + ') raw: ' + rawText.slice(0, 300))
 
-    // Send to Slack
-    const webhookUrl = process.env.SLACK_WEBHOOK_URL
-    if (webhookUrl) {
-      const promoters = [promoter1, promoter2, promoter3].filter(Boolean).join(', ')
-      const statusEmoji = analysis.approved ? '✅' : '❌'
-      const logoLabel = { old: '🔴 Old logo', new: '🟢 New logo', both: '⚠️ Both logos', unclear: '❓ Logo unclear' }[analysis.logo_version] || ''
-      
-      const slackBody = {
-        blocks: [
-          {
-            type: 'header',
-            text: { type: 'plain_text', text: `${statusEmoji} BTL Setup — ${analysis.approved ? 'APPROVED' : 'NOT APPROVED'}` }
-          },
-          {
-            type: 'section',
-            fields: [
-              { type: 'mrkdwn', text: `*Date:*\n${date}` },
-              { type: 'mrkdwn', text: `*City:*\n${city}` },
-              { type: 'mrkdwn', text: `*Society:*\n${society}` },
-              { type: 'mrkdwn', text: `*Promoter(s):*\n${promoters}` },
-              { type: 'mrkdwn', text: `*Logo:*\n${logoLabel}` },
-            ]
-          },
-          analysis.issues.length > 0 ? {
-            type: 'section',
-            text: { type: 'mrkdwn', text: `*Issues:*\n${analysis.issues.map(i => `• ${i}`).join('\n')}` }
-          } : null,
-          analysis.notes ? {
-            type: 'section',
-            text: { type: 'mrkdwn', text: `_${analysis.notes}_` }
-          } : null,
-        ].filter(Boolean)
-      }
-
-      await fetch(webhookUrl, {
+    // Upload photo to Cloudinary
+    let photoUrl = ''
+    try {
+      const cloudRes = await fetch('https://api.cloudinary.com/v1_1/dph2tzsck/image/upload', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(slackBody)
+        body: JSON.stringify({
+          file: `data:${mimeType};base64,${base64}`,
+          upload_preset: 'btl_setups',
+          folder: 'btl-setups'
+        })
       })
+      const cloudJson = await cloudRes.json()
+      photoUrl = cloudJson.secure_url || ''
+      console.log('Cloudinary upload:', photoUrl)
+    } catch (err) {
+      console.error('Cloudinary upload failed:', err.message)
+    }
+
+    // Log to Google Sheets via Apps Script
+    const scriptUrl = process.env.GOOGLE_SCRIPT_URL
+    if (scriptUrl) {
+      try {
+        const promoters = [promoter1, promoter2, promoter3].filter(Boolean).join(', ')
+        await fetch(scriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            date, city, society, promoters,
+            approved: analysis.approved,
+            issues: analysis.issues,
+            logo_version: analysis.logo_version,
+            notes: analysis.notes,
+            photo_url: photoUrl
+          })
+        })
+        console.log('Logged to Sheets')
+      } catch (err) {
+        console.error('Sheets logging failed:', err.message)
+      }
     }
 
     return NextResponse.json(analysis)
