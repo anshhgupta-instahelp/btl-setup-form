@@ -85,28 +85,29 @@ A setup is APPROVED only if: all required elements are present, no quality issue
     }
 
     const geminiJson = await geminiRes.json()
-    console.log('Gemini full JSON:', JSON.stringify(geminiJson).slice(0, 1000))
-
     const parts = geminiJson?.candidates?.[0]?.content?.parts || []
     const rawText = parts.map(p => p.text || '').join('').trim()
-    console.log('Gemini rawText:', rawText.slice(0, 500))
+    console.log('rawText len:', rawText.length, 'start:', JSON.stringify(rawText.slice(0, 120)), 'end:', JSON.stringify(rawText.slice(-80)))
 
-    let analysis
+    let analysis, parseErr = ''
     // Try 1: direct parse
-    try { analysis = JSON.parse(rawText) } catch (_) {}
-    // Try 2: strip markdown fences then parse
+    try { analysis = JSON.parse(rawText) } catch (e) { parseErr += 'direct:' + e.message + '; ' }
+    // Try 2: strip markdown fences
     if (!analysis) {
       try {
         const clean = rawText.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim()
         analysis = JSON.parse(clean)
-      } catch (_) {}
+      } catch (e) { parseErr += 'fence-strip:' + e.message + '; ' }
     }
-    // Try 3: extract first {...} block
+    // Try 3: regex extract last {...} block (greedy)
     if (!analysis) {
       const m = rawText.match(/\{[\s\S]*\}/)
-      if (m) { try { analysis = JSON.parse(m[0]) } catch (_) {} }
+      if (m) {
+        console.log('regex match len:', m[0].length, 'end:', JSON.stringify(m[0].slice(-80)))
+        try { analysis = JSON.parse(m[0]) } catch (e) { parseErr += 'regex:' + e.message + '; ' }
+      } else { parseErr += 'no-json-block; ' }
     }
-    if (!analysis) throw new Error('Gemini returned unparseable response: ' + rawText.slice(0, 300))
+    if (!analysis) throw new Error('Parse failed (' + parseErr + ') raw: ' + rawText.slice(0, 300))
 
     // Send to Slack
     const webhookUrl = process.env.SLACK_WEBHOOK_URL
