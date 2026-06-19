@@ -124,26 +124,26 @@ A setup is APPROVED only if: all required elements are present, no quality issue
     }
     if (!analysis) throw new Error('Parse failed (' + parseErr + ') raw: ' + rawText.slice(0, 300))
 
-    // Upload photo to Cloudinary
+    // Upload photo to Cloudinary using FormData
     let photoUrl = ''
     try {
+      const cloudForm = new FormData()
+      const photoBlob = new Blob([Buffer.from(base64, 'base64')], { type: mimeType })
+      cloudForm.append('file', photoBlob, 'photo.jpg')
+      cloudForm.append('upload_preset', 'btl_setups')
       const cloudRes = await fetch('https://api.cloudinary.com/v1_1/dph2tzsck/image/upload', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          file: `data:${mimeType};base64,${base64}`,
-          upload_preset: 'btl_setups'
-        })
+        body: cloudForm
       })
       const cloudJson = await cloudRes.json()
       photoUrl = cloudJson.secure_url || ''
       if (photoUrl) {
         console.log('Cloudinary upload OK:', photoUrl)
       } else {
-        console.error('Cloudinary upload failed - response:', JSON.stringify(cloudJson).slice(0, 300))
+        console.error('Cloudinary upload failed:', JSON.stringify(cloudJson).slice(0, 300))
       }
     } catch (err) {
-      console.error('Cloudinary upload failed:', err.message)
+      console.error('Cloudinary upload error:', err.message)
     }
 
     // Log to Google Sheets via Apps Script
