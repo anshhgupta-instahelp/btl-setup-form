@@ -63,7 +63,7 @@ A setup is APPROVED only if: all required elements are present, no quality issue
           { inline_data: { mime_type: mimeType, data: base64 } }
         ]
       }],
-      generationConfig: { temperature: 0.1, maxOutputTokens: 500 }
+      generationConfig: { temperature: 0.1, maxOutputTokens: 500, responseMimeType: 'application/json' }
     })
 
     let geminiRes, lastErr
