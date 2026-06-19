@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
 export const runtime = 'nodejs'
-export const maxDuration = 30
+export const maxDuration = 60
 
 export async function POST(req) {
   try {
@@ -63,7 +63,8 @@ A setup is APPROVED only if: all required elements are present, no quality issue
           { inline_data: { mime_type: mimeType, data: base64 } }
         ]
       }],
-      generationConfig: {
+      thinkingConfig: { thinkingBudget: 0 },
+          generationConfig: {
             temperature: 0.1,
             maxOutputTokens: 500,
             responseMimeType: 'application/json',
