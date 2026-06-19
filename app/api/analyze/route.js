@@ -63,7 +63,21 @@ A setup is APPROVED only if: all required elements are present, no quality issue
           { inline_data: { mime_type: mimeType, data: base64 } }
         ]
       }],
-      generationConfig: { temperature: 0.1, maxOutputTokens: 500, responseMimeType: 'application/json' }
+      generationConfig: {
+            temperature: 0.1,
+            maxOutputTokens: 500,
+            responseMimeType: 'application/json',
+            responseSchema: {
+              type: 'object',
+              properties: {
+                approved: { type: 'boolean' },
+                issues: { type: 'array', items: { type: 'string' } },
+                logo_version: { type: 'string', enum: ['old', 'new', 'both', 'unclear'] },
+                notes: { type: 'string' }
+              },
+              required: ['approved', 'issues', 'logo_version', 'notes']
+            }
+          }
     })
 
     let geminiRes, lastErr
