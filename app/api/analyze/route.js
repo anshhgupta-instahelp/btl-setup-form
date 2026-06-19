@@ -85,10 +85,14 @@ A setup is APPROVED only if: all required elements are present, no quality issue
     }
 
     const geminiJson = await geminiRes.json()
-    const rawText = geminiJson?.candidates?.[0]?.content?.parts?.[0]?.text || ''
-    console.log('Gemini raw:', rawText.slice(0, 200))
-    const jsonMatch = rawText.match(/\{[\s\S]*\}/)
-    if (!jsonMatch) throw new Error('Could not parse Gemini response: ' + rawText.slice(0, 100))
+    // gemini-2.5-flash may return multiple parts (thinking + response); join all text parts
+    const parts = geminiJson?.candidates?.[0]?.content?.parts || []
+    const rawText = parts.map(p => p.text || '').join('')
+    console.log('Gemini raw:', rawText.slice(0, 300))
+    // Strip markdown code fences if present, then extract JSON object
+    const stripped = rawText.replace(/```(?:json)?\s*/gi, '').replace(/```/g, '')
+    const jsonMatch = stripped.match(/\{[\s\S]*\}/)
+    if (!jsonMatch) throw new Error('Could not parse Gemini response: ' + rawText.slice(0, 150))
 
     const analysis = JSON.parse(jsonMatch[0])
 
