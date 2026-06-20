@@ -33,7 +33,7 @@ Analyse this setup photo carefully and check the following:
 1. REQUIRED ELEMENTS — look carefully for each. Mark PRESENT if visible anywhere in the photo, MISSING only if truly absent:
    - Multi-use standee: a tall reusable standee with a GRID of multiple service images (6 panels showing services like Househelp Backup, Deep Dusting, Bathroom Cleaning, etc.). Usually on the LEFT side of the setup.
    - Single-use standee: a flex print banner featuring a SINGLE woman/person image with "Starts at ₹99" or similar offer text. Usually on the RIGHT side of the setup.
-   - Promo table: a cube/barrel/drum shaped branded display unit with InstaHelp branding wrap — NO cloth required, it has its own branded covering.
+   - Promo table: a cube/barrel/drum shaped display unit with InstaHelp branding printed directly on it (blue, says "Get House Help in 10 mins"). It is NOT a regular table — it is a self-standing branded cube/barrel unit. NO external cloth required. Look carefully in the center of the setup.
    - Goodie bag: branded bags, gift bags, or packets placed at/on the stall for distribution — look carefully on and around the promo table.
    - Gazebo/canopy: a purple/blue tent/canopy overhead structure (required ONLY for outdoor setups; skip for indoor).
 
@@ -42,7 +42,11 @@ Analyse this setup photo carefully and check the following:
    - Standees: visibly tilted at a significant angle, damaged, or dirty?
    - IMPORTANT: the promo table does NOT need a cloth — never flag missing cloth as an issue. Only flag if something is clearly wrong.
 
-3. FOOD TABLE BANNER — ONLY check this if a food/snacks/refreshments table is ACTUALLY visible in the photo. If no food table is present, skip this check entirely. If a food table IS present, check if it has an InstaHelp banner on the FRONT FACE. Missing banner on a food table = violation.
+3. FOOD TABLE BANNER — Look carefully for any table with food/snacks/refreshments/drinks or a person serving food. A food table often has a non-branded cloth (orange, red, white etc.) on it. If such a table is present:
+   - Check if the FRONT FACE of the table has an InstaHelp banner. The banner must be on the front-facing side visible to visitors.
+   - If the front face shows a plain colored cloth (orange, red, etc.) with NO InstaHelp branding = VIOLATION. Flag it as "Food table front face does not have InstaHelp banner".
+   - A banner placed on top or behind the table does NOT count — it must be on the front face.
+   - If no food table is present, skip this check entirely.
 
 4. LOGO VERSION:
    - OLD logo: "UC InstaHelp By Urban Company" with a white square UC icon
