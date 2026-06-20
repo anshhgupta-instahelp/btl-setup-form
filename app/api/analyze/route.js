@@ -28,23 +28,33 @@ export async function POST(req) {
 
     const prompt = `You are a BTL (Below The Line) setup quality checker for InstaHelp by Urban Company.
 
-Analyse this setup photo and check for the following:
+Analyse this setup photo carefully and check the following:
 
-1. REQUIRED ELEMENTS (mark each as present/missing):
-   - Multi-use standee (large branded standee, reusable)
+1. REQUIRED ELEMENTS — for each, determine if it is PRESENT or MISSING (do not confuse missing with damaged):
+   - Multi-use standee (large reusable branded standee)
    - Single-use standee (smaller standee or flex board)
    - Promo table (table with branded cover/cloth)
    - Goodie bag (gift bags visible at the stall)
-   - Gazebo/canopy (required ONLY if this is an outdoor setup)
+   - Gazebo/canopy (required ONLY for outdoor setups; skip for indoor)
 
-2. QUALITY ISSUES: Check if elements are clean, upright, properly positioned, not damaged/torn.
+2. QUALITY ISSUES — only flag issues for elements that ARE present:
+   - Gazebo/canopy: is the fabric wrinkled, dirty, or torn?
+   - Promo table cloth: is it wrinkled, dirty, misaligned, or torn?
+   - Standees: are they tilted, damaged, or dirty?
+   - Overall: are elements properly positioned and upright?
+   - IMPORTANT: table height adjustment or folded table legs is NOT a quality issue.
 
-3. FOOD TABLE BANNER: If there is a table with food/snacks/refreshments, check if it has an InstaHelp banner on the FRONT FACE of the table. If there's a food table without a banner on the front face, that is a violation.
+3. FOOD TABLE BANNER — ONLY check this if a food/snacks/refreshments table is ACTUALLY visible in the photo. If no food table is present, skip this check entirely. If a food table IS present, check if it has an InstaHelp banner on the FRONT FACE. Missing banner on a food table = violation.
 
 4. LOGO VERSION:
    - OLD logo: "UC InstaHelp By Urban Company" with a white square UC icon
    - NEW logo: "Instahelp By Urban Company" with italic "Insta" + bold "help", yellow/lime-green accent, NO UC square
-   - Check which version(s) are visible.
+   - Check which version(s) are visible on any element.
+
+CRITICAL RULES:
+- If an element is not visible/present, report it as "X is missing" — never say it is "damaged" if it simply is not there.
+- Only report food table banner issues if a food table is actually present in the photo.
+- Be specific and accurate — do not hallucinate elements that are not visible.
 
 Respond ONLY with valid JSON in this exact format:
 {
@@ -54,7 +64,7 @@ Respond ONLY with valid JSON in this exact format:
   "notes": "one short sentence of additional observations, or empty string"
 }
 
-A setup is APPROVED only if: all required elements are present, no quality issues, food table (if any) has banner on front face. Logo version does not affect approval — just note it.`
+A setup is APPROVED only if: all required elements are present, no quality issues, food table (if present) has banner on front face. Logo version does not affect approval — just note it.`
 
     const geminiBody = JSON.stringify({
       contents: [{
