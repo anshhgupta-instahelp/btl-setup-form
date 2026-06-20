@@ -170,7 +170,7 @@ export default function Home() {
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">Setup Photo *</label>
             <label className="block w-full cursor-pointer">
-              <input type="file" accept="image/*" capture="environment" onChange={handlePhoto} className="hidden" />
+              <input type="file" accept="image/*" onChange={handlePhoto} className="hidden" />
               {preview ? (
                 <div className="relative rounded-xl overflow-hidden border-2 border-green-400">
                   <img src={preview} alt="Preview" className="w-full object-cover max-h-64" />
