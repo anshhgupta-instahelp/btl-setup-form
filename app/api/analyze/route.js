@@ -31,17 +31,16 @@ export async function POST(req) {
 Analyse this setup photo carefully and check the following:
 
 1. REQUIRED ELEMENTS — look carefully for each. Mark PRESENT if visible anywhere in the photo, MISSING only if truly absent:
-   - Multi-use standee: a large tall vertical roll-up/banner standee with InstaHelp branding (usually purple/blue, the biggest standee)
-   - Single-use standee: a smaller flex board or printed board standee (separate from the large one)
-   - Promo table: a table (round, oval, or square) covered with an InstaHelp branded cloth/cover
-   - Goodie bag: branded bags, gift bags, or packets placed at/on the stall for distribution — look carefully on and around the promo table
-   - Gazebo/canopy: a tent/canopy overhead structure (required ONLY for outdoor setups; if setup is indoors, mark as not applicable)
+   - Multi-use standee: a tall reusable standee with a GRID of multiple service images (6 panels showing services like Househelp Backup, Deep Dusting, Bathroom Cleaning, etc.). Usually on the LEFT side of the setup.
+   - Single-use standee: a flex print banner featuring a SINGLE woman/person image with "Starts at ₹99" or similar offer text. Usually on the RIGHT side of the setup.
+   - Promo table: a cube/barrel/drum shaped branded display unit with InstaHelp branding wrap — NO cloth required, it has its own branded covering.
+   - Goodie bag: branded bags, gift bags, or packets placed at/on the stall for distribution — look carefully on and around the promo table.
+   - Gazebo/canopy: a purple/blue tent/canopy overhead structure (required ONLY for outdoor setups; skip for indoor).
 
 2. QUALITY ISSUES — only flag issues for elements that ARE present. Be conservative — only flag clear, obvious issues:
    - Gazebo/canopy fabric: clearly wrinkled, dirty, or torn?
-   - Promo table cloth: clearly wrinkled, dirty, misaligned, or torn?
    - Standees: visibly tilted at a significant angle, damaged, or dirty?
-   - IMPORTANT: a table at lower height or with folded legs is NOT a quality issue. Only flag if something is clearly wrong.
+   - IMPORTANT: the promo table does NOT need a cloth — never flag missing cloth as an issue. Only flag if something is clearly wrong.
 
 3. FOOD TABLE BANNER — ONLY check this if a food/snacks/refreshments table is ACTUALLY visible in the photo. If no food table is present, skip this check entirely. If a food table IS present, check if it has an InstaHelp banner on the FRONT FACE. Missing banner on a food table = violation.
 
