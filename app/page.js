@@ -30,7 +30,7 @@ const compressImage = (file) => {
 
 export default function Home() {
   const [form, setForm] = useState({
-    date: new Date().toISOString().split('T')[0],
+    
     city: '',
     society: '',
     promoter1: '',
@@ -119,14 +119,6 @@ export default function Home() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Date */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Date *</label>
-            <input type="date" required value={form.date}
-              onChange={e => setForm(f => ({ ...f, date: e.target.value }))}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400" />
-          </div>
-
           {/* City */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">City *</label>

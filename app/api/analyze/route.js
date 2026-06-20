@@ -6,7 +6,7 @@ export const maxDuration = 60
 export async function POST(req) {
   try {
     const data = await req.formData()
-    const date = data.get('date')
+    const date = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:true })
     const city = data.get('city')
     const society = data.get('society')
     const promoter1 = data.get('promoter1')
