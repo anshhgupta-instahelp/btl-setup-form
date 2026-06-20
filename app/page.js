@@ -169,23 +169,26 @@ export default function Home() {
           {/* Photo Upload */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">Setup Photo *</label>
-            <label className="block w-full cursor-pointer">
-              <input type="file" accept="image/*" onChange={handlePhoto} className="hidden" />
-              {preview ? (
-                <div className="relative rounded-xl overflow-hidden border-2 border-green-400">
-                  <img src={preview} alt="Preview" className="w-full object-cover max-h-64" />
-                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                    <span className="text-white font-semibold">Tap to change</span>
-                  </div>
-                </div>
-              ) : (
-                <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-green-400 transition-colors">
-                  <div className="text-4xl mb-2">📸</div>
-                  <p className="text-gray-600 font-medium">Tap to take photo or upload</p>
-                  <p className="text-gray-400 text-sm mt-1">JPG, PNG supported</p>
-                </div>
-              )}
-            </label>
+            {preview ? (
+              <div className="relative rounded-xl overflow-hidden border-2 border-green-400 mb-2">
+                <img src={preview} alt="Preview" className="w-full object-cover max-h-64" />
+              </div>
+            ) : (
+              <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center mb-2">
+                <div className="text-4xl mb-2">📸</div>
+                <p className="text-gray-500 text-sm">Choose an option below</p>
+              </div>
+            )}
+            <div className="grid grid-cols-2 gap-3">
+              <label className="cursor-pointer flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-xl transition-colors">
+                <input type="file" accept="image/*" capture="environment" onChange={handlePhoto} className="hidden" />
+                <span>📷</span> Take Photo
+              </label>
+              <label className="cursor-pointer flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 rounded-xl transition-colors">
+                <input type="file" accept="image/*" onChange={handlePhoto} className="hidden" />
+                <span>🖼️</span> From Gallery
+              </label>
+            </div>
           </div>
 
           {error && <p className="text-red-600 text-sm bg-red-50 p-3 rounded-xl">{error}</p>}
