@@ -87,19 +87,19 @@ export default function Home() {
     <main className="max-w-lg mx-auto px-4 py-8">
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="inline-block bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-2">INSTAHELP BY URBAN COMPANY</div>
+        <div className="inline-block bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-2">INSTAHELP BY URBAN COMPANY</div>
         <h1 className="text-2xl font-bold text-gray-800">BTL Setup Check</h1>
         <p className="text-gray-500 text-sm mt-1">Upload your setup photo for instant approval</p>
       </div>
 
       {result ? (
-        <div className={`rounded-2xl p-6 text-center shadow-lg ${result.approved ? 'bg-green-50 border-2 border-green-400' : 'bg-red-50 border-2 border-red-400'}`}>
+        <div className={`rounded-2xl p-6 text-center shadow-lg ${result.approved ? 'bg-purple-50 border-2 border-purple-400' : 'bg-red-50 border-2 border-red-400'}`}>
           <div className="text-5xl mb-3">{result.approved ? '✅' : '❌'}</div>
-          <h2 className={`text-2xl font-bold mb-2 ${result.approved ? 'text-green-700' : 'text-red-700'}`}>
+          <h2 className={`text-2xl font-bold mb-2 ${result.approved ? 'text-purple-700' : 'text-red-700'}`}>
             {result.approved ? 'Setup Approved!' : 'Not Approved'}
           </h2>
           {result.approved ? (
-            <p className="text-green-700 font-semibold text-lg">Please proceed</p>
+            <p className="text-purple-700 font-semibold text-lg">Please proceed</p>
           ) : (
             <div className="text-left mt-4">
               <p className="text-red-700 font-semibold mb-2">Issues found:</p>
@@ -124,7 +124,7 @@ export default function Home() {
             <label className="block text-sm font-semibold text-gray-700 mb-1">City *</label>
             <select required value={form.city}
               onChange={e => setForm(f => ({ ...f, city: e.target.value }))}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400 bg-white">
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white">
               <option value="">Select city</option>
               {CITIES.map(c => <option key={c}>{c}</option>)}
             </select>
@@ -135,7 +135,7 @@ export default function Home() {
             <label className="block text-sm font-semibold text-gray-700 mb-1">Society Name *</label>
             <input type="text" required placeholder="e.g. Mapsko Royal Ville, Gurugram" value={form.society}
               onChange={e => setForm(f => ({ ...f, society: e.target.value }))}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400" />
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400" />
           </div>
 
           {/* Promoters */}
@@ -143,26 +143,26 @@ export default function Home() {
             <label className="block text-sm font-semibold text-gray-700 mb-1">Promoter 1 *</label>
             <input type="text" required placeholder="Name" value={form.promoter1}
               onChange={e => setForm(f => ({ ...f, promoter1: e.target.value }))}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400" />
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400" />
           </div>
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">Promoter 2 <span className="text-gray-400 font-normal">(optional)</span></label>
             <input type="text" placeholder="Name" value={form.promoter2}
               onChange={e => setForm(f => ({ ...f, promoter2: e.target.value }))}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400" />
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400" />
           </div>
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">Promoter 3 <span className="text-gray-400 font-normal">(optional)</span></label>
             <input type="text" placeholder="Name" value={form.promoter3}
               onChange={e => setForm(f => ({ ...f, promoter3: e.target.value }))}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400" />
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400" />
           </div>
 
           {/* Photo Upload */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">Setup Photo *</label>
             {preview ? (
-              <div className="relative rounded-xl overflow-hidden border-2 border-green-400 mb-2">
+              <div className="relative rounded-xl overflow-hidden border-2 border-purple-400 mb-2">
                 <img src={preview} alt="Preview" className="w-full object-cover max-h-64" />
               </div>
             ) : (
@@ -172,7 +172,7 @@ export default function Home() {
               </div>
             )}
             <div className="grid grid-cols-2 gap-3">
-              <label className="cursor-pointer flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-xl transition-colors">
+              <label className="cursor-pointer flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-xl transition-colors">
                 <input type="file" accept="image/*" capture="environment" onChange={handlePhoto} className="hidden" />
                 <span>📷</span> Take Photo
               </label>
@@ -186,7 +186,7 @@ export default function Home() {
           {error && <p className="text-red-600 text-sm bg-red-50 p-3 rounded-xl">{error}</p>}
 
           <button type="submit" disabled={loading}
-            className="w-full bg-green-500 hover:bg-green-600 disabled:bg-gray-300 text-white font-bold py-4 rounded-xl text-lg transition-colors">
+            className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-gray-300 text-white font-bold py-4 rounded-xl text-lg transition-colors">
             {loading ? (
               <span className="flex items-center justify-center gap-2">
                 <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none">
