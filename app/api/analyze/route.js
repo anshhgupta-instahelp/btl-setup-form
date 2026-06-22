@@ -39,8 +39,9 @@ Analyse this setup photo carefully and check the following:
 
 2. QUALITY ISSUES — only flag issues for elements that ARE present. Be conservative — only flag clear, obvious issues:
    - Gazebo/canopy fabric: clearly wrinkled, dirty, or torn?
-   - Standees: visibly tilted at a significant angle, damaged, or dirty?
-   - IMPORTANT: the promo table does NOT need a cloth — never flag missing cloth as an issue. Only flag if something is clearly wrong.
+   - Standees: visibly tilted at a significant angle, torn/ripped, worn/faded, crumpled, or structurally damaged? Even partial tearing or bending at the bottom/top counts.
+   - Promo table structural completeness: check if the cube/barrel unit is intact — does it have its full top surface/lid? If the top part is missing or broken off, flag as "Promo table top is broken/missing".
+   - IMPORTANT: the promo table does NOT need a cloth — never flag missing cloth as an issue.
 
 3. FOOD TABLE BANNER — Look carefully for any table with food/snacks/refreshments/drinks or a person serving food. A food table often has a non-branded cloth (orange, red, white etc.) on it. If such a table is present:
    - Check if the FRONT FACE of the table has an InstaHelp banner. The banner must be on the front-facing side visible to visitors.
