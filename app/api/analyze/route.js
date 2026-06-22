@@ -35,7 +35,7 @@ Analyse this setup photo carefully and check the following:
    - Single-use standee: a flex print banner featuring a SINGLE woman/person image with "Starts at ₹99" or similar offer text. Usually on the RIGHT side of the setup.
    - Promo table: a cube/barrel/drum shaped display unit with InstaHelp branding printed directly on it (blue, says "Get House Help in 10 mins"). It is NOT a regular table — it is a self-standing branded cube/barrel unit. NO external cloth required. Look carefully in the center of the setup.
    - Goodie bag: branded bags, gift bags, or packets placed at/on the stall for distribution — look carefully on and around the promo table.
-   - Gazebo/canopy: a purple/blue tent/canopy overhead structure (required ONLY for outdoor setups; skip for indoor).
+   - Gazebo/canopy: a purple/blue tent/canopy overhead structure. REQUIRED if the setup is outdoors. To determine outdoor vs indoor: if you can see open sky, road, vehicles, trees, or the setup is on a footpath/ground outside a building = OUTDOOR = gazebo required. If setup is inside a building/lobby/hall = INDOOR = gazebo not required. Flag as missing if outdoor and no gazebo/canopy is visible overhead.
 
 2. QUALITY ISSUES — only flag issues for elements that ARE present. Be conservative — only flag clear, obvious issues:
    - Gazebo/canopy fabric: clearly wrinkled, dirty, or torn?
