@@ -33,14 +33,15 @@ Analyse this setup photo carefully and check the following:
 1. REQUIRED ELEMENTS — look carefully for each. Mark PRESENT if visible anywhere in the photo, MISSING only if truly absent:
    - Multi-use standee: a tall reusable standee with a GRID of multiple service images (6 panels showing services like Househelp Backup, Deep Dusting, Bathroom Cleaning, etc.). Usually on the LEFT side of the setup.
    - Single-use standee: a flex print banner featuring a SINGLE woman/person image with "Starts at ₹99" or similar offer text. Usually on the RIGHT side of the setup.
-   - Promo table: a cube/barrel/drum shaped display unit with InstaHelp branding printed directly on it (blue, says "Get House Help in 10 mins"). It is NOT a regular table — it is a self-standing branded cube/barrel unit. NO external cloth required. Look carefully in the center of the setup.
+   - Promo table: a cube/barrel/drum shaped self-standing display unit with InstaHelp branding printed on it (usually purple/blue, says "Get House Help in 10 mins", but may appear white/cream depending on lighting or angle). It is NOT a regular table with legs — it is a solid branded cube/barrel unit. NO external cloth required. It may have goodie bags placed on top. Look carefully in the center or sides of the setup.
    - Goodie bag: branded bags, gift bags, or packets placed at/on the stall for distribution — look carefully on and around the promo table.
    - Gazebo/canopy: a purple/blue tent/canopy overhead structure. REQUIRED if the setup is outdoors. To determine outdoor vs indoor: if you can see open sky, road, vehicles, trees, or the setup is on a footpath/ground outside a building = OUTDOOR = gazebo required. If setup is inside a building/lobby/hall = INDOOR = gazebo not required. Flag as missing if outdoor and no gazebo/canopy is visible overhead.
 
 2. QUALITY ISSUES — only flag issues for elements that ARE present. Be conservative — only flag clear, obvious issues:
    - Gazebo/canopy fabric: clearly wrinkled, dirty, or torn?
-   - Standees: visibly tilted at a significant angle, torn/ripped, worn/faded, crumpled, or structurally damaged? Even partial tearing or bending at the bottom/top counts.
+   - Standees: visibly tilted at a significant angle, torn/ripped, worn/faded, crumpled, structurally damaged, or stretched/distorted (e.g. top portion pulled/warped out of shape)? Even partial tearing, bending, or stretching counts.
    - Promo table structural completeness: check if the cube/barrel unit is intact — does it have its full top surface/lid? If the top part is missing or broken off, flag as "Promo table top is broken/missing".
+   - Backdrop (optional element): A branded InstaHelp flex/banner hung at the back of the setup (often inside the gazebo). Backdrop is NOT mandatory — only check if one is present. If present: is it properly hung, taut, and neat? If it is sagging, wrinkled, not fully attached, or not properly placed, flag as "Backdrop is not properly placed/hung".
    - IMPORTANT: the promo table does NOT need a cloth — never flag missing cloth as an issue.
 
 3. FOOD TABLE BANNER — Look carefully for any table with food/snacks/refreshments/drinks or a person serving food. A food table often has a non-branded cloth (orange, red, white etc.) on it. If such a table is present:
